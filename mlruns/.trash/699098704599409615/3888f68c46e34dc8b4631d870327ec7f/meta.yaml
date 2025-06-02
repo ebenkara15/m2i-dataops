@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/699098704599409615/3888f68c46e34dc8b4631d870327ec7f/artifacts
+deleted_time: 1748800499926
+end_time: 1748697921244
+entry_point_name: ''
+experiment_id: '699098704599409615'
+lifecycle_stage: deleted
+run_id: 3888f68c46e34dc8b4631d870327ec7f
+run_name: sedate-quail-125
+run_uuid: 3888f68c46e34dc8b4631d870327ec7f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748697917089
+status: 3
+tags: []
+user_id: ebenkara

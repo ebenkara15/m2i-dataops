@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/223244017466310868/0e1addd9a03b4508aec7ddf25c990f36/artifacts
+end_time: 1748800463076
+entry_point_name: ''
+experiment_id: '223244017466310868'
+lifecycle_stage: active
+run_id: 0e1addd9a03b4508aec7ddf25c990f36
+run_name: fearless-quail-122
+run_uuid: 0e1addd9a03b4508aec7ddf25c990f36
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748800458085
+status: 3
+tags: []
+user_id: ebenkara

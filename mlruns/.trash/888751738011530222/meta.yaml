@@ -1,0 +1,7 @@
+artifact_location: mlflow-artifacts:/888751738011530222
+creation_time: 1748799936506
+experiment_id: '888751738011530222'
+last_update_time: 1748800505451
+lifecycle_stage: deleted
+name: Iris Logistic Regression
+tags: {}
