@@ -1,0 +1,13 @@
+
+    
+    
+    
+    create table "jaffle_shop"."main"."raw_orders" ("id" integer,"user_id" integer,"order_date" date,"status" text)
+  ;
+    -- dbt seed --
+    
+          COPY "jaffle_shop"."main"."raw_orders" FROM '/Users/ebenkara/Documents/Perso/info/dataops/jaffle_shop_duckdb/seeds/raw_orders.csv' (FORMAT CSV, HEADER TRUE, DELIMITER ',')
+        
+
+;
+  
