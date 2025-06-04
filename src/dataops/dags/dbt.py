@@ -4,6 +4,8 @@ from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 
 IMAGE_NAME = "europe-docker.pkg.dev/dataops-m2i/dataops-registry/jaffle-shop"
+# CHANGE ME: ⚠️ Add you name in the varaiable below. Only letter and '_' character.
+OWNER = ""
 
 
 with DAG(
@@ -19,7 +21,7 @@ with DAG(
         namespace="composer-user-workloads",
         name="debug-config",
         image=IMAGE_NAME,
-        env_vars={"DATE_INGEST": "{{ ds }}"},
+        env_vars={"DATE_INGEST": "{{ ds }}", "OWNER": OWNER},
         arguments=["debug"],
     )
 
