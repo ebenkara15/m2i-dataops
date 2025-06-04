@@ -4,6 +4,8 @@ from typing import Any
 import pendulum
 import requests
 from airflow.decorators import dag, task
+from airflow.operators.python import get_current_context
+from google.cloud import storage
 from pydantic import BaseModel, Field, ValidationError
 
 
@@ -23,7 +25,7 @@ class User(BaseModel):
     catchup=False,
     tags=["example"],
 )
-def users_pipeline() -> None:
+def users_pipeline_load() -> None:
     """
     ### TaskFlow API Tutorial Documentation
     This is a simple data pipeline example which demonstrates the use of
@@ -83,22 +85,34 @@ def users_pipeline() -> None:
 
         return valid_users
 
-    @task()
+    @task
     def load(valid_users: list):
         """
         #### Load task
         A simple Load task which takes in the result of the Transform task and
         instead of saving it to end user review, just prints it out.
         """
+        ctx = get_current_context()
 
+        print(f"Loading data, the running date is: {ctx['ds']}")
         print(f"🔴 Total number of valid users: {len(valid_users)}")
+
+        # Write valid_users to the bucket BUCKET
+        BUCKET_NAME = "dataops-sources"
+        # ⚠️ CHANGE ME: put your name in the following path please !
+        path = f"users/<yourname>/users_{ctx['ds']}"
+        client = storage.Client()
+
+        # bucket = client.bucket("INSERT THE NAME OF A BUCKET")
+        # blob = bucket.blob("INSERT A PATH HERE")
+
+        # data = json.dumps("WHAT SHOULD BE SERIALIZED", indent=2)
+
+        # blob.upload_from_string(data=data, content_type="application/json")
 
     raw_users = extract()
     valid_users = validate(raw_users)
     load(valid_users)
 
 
-users_pipeline()
-
-if __name__ == "__main__":
-    users_pipeline().test()
+users_pipeline_load()
