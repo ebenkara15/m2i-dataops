@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  # Irma sources
+  - name: jaffle_sources
+    description: "Source from Jaffle Shop"
+    database: dbt-tutorial
+    schema: jaffle_shop
+    tables:
+      - name: customers
+      - name: orders
+
+  - name: stripe_sources
+    description: "Source from Stripe"
+    database: dbt-tutorial
+    schema: stripe
+    tables:
+      - name: payment

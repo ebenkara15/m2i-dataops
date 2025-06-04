@@ -95,7 +95,7 @@ def users_pipeline() -> None:
 
     raw_users = extract()
     valid_users = validate(raw_users)
-    load(valid_users)
+    load(valid_users) >> dummy_task
 
 
 users_pipeline()

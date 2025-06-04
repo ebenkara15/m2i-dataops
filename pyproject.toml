@@ -15,7 +15,8 @@ dependencies = [
     "dbt-duckdb (>=1.9.3,<2.0.0)",
     "requests (>=2.32.3,<3.0.0)",
     "apache-airflow (==2.10.4)",
-    "google-cloud-storage (>=3.1.0,<4.0.0)"
+    "dbt-bigquery (==1.9.2)",
+    "apache-airflow-providers-cncf-kubernetes (>=10.5.0,<11.0.0)",
 ]
 
 [tool.poetry]

@@ -1,18 +1,18 @@
 with customers as (
 
-    select * from "jaffle_shop"."main"."stg_customers"
+    select * from {{ ref('stg_customers') }}
 
 ),
 
 orders as (
 
-    select * from "jaffle_shop"."main"."stg_orders"
+    select * from {{ ref('stg_orders') }}
 
 ),
 
 payments as (
 
-    select * from "jaffle_shop"."main"."stg_payments"
+    select * from {{ ref('stg_payments') }}
 
 ),
 
