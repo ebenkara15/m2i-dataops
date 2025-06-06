@@ -29,7 +29,9 @@ if os.path.exists(path):
     shutil.rmtree(path)
 
 # Création de données
-df = spark.createDataFrame([(1, "Alice"), (2, "Bob")], ["id", "name"])
+# df = spark.createDataFrame([(1, "Alice"), (2, "Bob")], ["id", "name"])
+input_path = "data/input.json"
+df = spark.read.option("multiline", "true").json(input_path)
 
 # Sauvegarde au format Delta
 df.write.format("delta").save(path)
@@ -39,7 +41,8 @@ print("Données initiales :")
 spark.read.format("delta").load(path).show()
 
 # Données à merger
-df_new = spark.createDataFrame([(2, "Bobby"), (3, "Clara")], ["id", "name"])
+update_path = "data/update.json"
+df_new = spark.read.option("multiline", "true").json(update_path)
 
 # Upsert (merge)
 delta_table = DeltaTable.forPath(spark, path)
@@ -50,5 +53,15 @@ delta_table.alias("old").merge(
 # Résultat
 print("Données après merge :")
 spark.read.format("delta").load(path).show()
+
+
+# Visualiser l'historique
+print("Historique de la table: ")
+DeltaTable.forPath(spark, path).history().show(truncate=True)
+
+# Visualiser une version antérieur
+print("Version initale de la table: ")
+spark.read.format("delta").option("versionAsOf", 0).load(path).show()
+
 
 spark.stop()
